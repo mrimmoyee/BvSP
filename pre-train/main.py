@@ -35,7 +35,7 @@ def init_args():
 
     # other parameters
     parser.add_argument("--max_seq_length", default=200, type=int)
-    parser.add_argument("--n_gpu", default=1)
+    parser.add_argument("--n_gpu", default=1, type=int)
     parser.add_argument("--train_batch_size", default=16, type=int,
                         help="Batch size per GPU/CPU for training.")
     parser.add_argument('--gradient_accumulation_steps', type=int, default=1,
@@ -197,7 +197,8 @@ args = init_args()
 random.seed(args.seed)
 np.random.seed(args.seed)
 torch.manual_seed(args.seed)
-if args.n_gpu > 0:
+#if args.n_gpu > 0:
+if int(args.n_gpu) > 0:
     torch.cuda.manual_seed_all(args.seed)
     cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
